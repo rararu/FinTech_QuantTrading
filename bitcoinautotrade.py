@@ -2,8 +2,8 @@ import time
 import pyupbit
 import datetime
 
-access = ""
-secret = ""
+access = "your-access"
+secret = "your-secret"
 
 def get_target_price(ticker, k):
     """변동성 돌파 전략으로 매수 목표가 조회"""
@@ -39,10 +39,10 @@ print("autotrade start")
 # 자동매매 시작
 while True:
     try:
-        tz1 = datetime.timezone(datetime.timedelta(hours=9), 'Asia/Seoul')
-        now =datetime.datetime.now().replace(tzinfo=tz1)
+        now = datetime.datetime.now()
         start_time = get_start_time("KRW-BTC")
         end_time = start_time + datetime.timedelta(days=1)
+
         if start_time < now < end_time - datetime.timedelta(seconds=10):
             target_price = get_target_price("KRW-BTC", 0.5)
             current_price = get_current_price("KRW-BTC")
